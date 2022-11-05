@@ -75,6 +75,9 @@ class ProdutosController extends Controller
                     $data = str_replace("/", "-", $model->Validade);
                     $model->Validade = date('Y-m-d H:i:s', strtotime($data));
                 }
+                if (empty($model->Status)) {
+                    $model->Status = 2;
+                }
                 $model->save();
                 return $this->redirect(['produtos/index']);
             }
@@ -106,6 +109,9 @@ class ProdutosController extends Controller
             if (!empty($model->Validade)) {
                 $data = str_replace("/", "-", $model->Validade);
                 $model->Validade = date('Y-m-d H:i:s', strtotime($data));
+            }
+            if (empty($model->Status)) {
+                $model->Status = 2;
             }
             $model->save();
             return $this->redirect(['view', 'ID' => $model->ID]);
